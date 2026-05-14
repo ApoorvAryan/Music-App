@@ -1,0 +1,2 @@
+import React from 'react';
+export default class ErrorBoundary extends React.Component{state={hasError:false};static getDerivedStateFromError(){return{hasError:true}}render(){if(this.state.hasError)return <main className="min-h-screen grid place-items-center bg-ink p-6"><div className="glass max-w-md rounded-2xl p-6 text-center"><h1 className="text-2xl font-black">Tune Fox hit a wrong note</h1><p className="mt-2 text-slate-300">Refresh the page and try again.</p></div></main>;return this.props.children;}}

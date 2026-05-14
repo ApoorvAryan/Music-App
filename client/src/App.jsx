@@ -1,0 +1,6 @@
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import ProtectedRoute from './components/ProtectedRoute';
+import AdminRoute from './components/AdminRoute';
+import Home from './pages/Home'; import Login from './pages/Login'; import Register from './pages/Register'; import UploadSong from './pages/UploadSong'; import Playlists from './pages/Playlists'; import Favorites from './pages/Favorites'; import Search from './pages/Search'; import Profile from './pages/Profile'; import AdminDashboard from './pages/AdminDashboard';
+export default function App(){return <Routes><Route path="/login" element={<Login/>}/><Route path="/register" element={<Register/>}/><Route element={<Layout/>}><Route path="/" element={<Home/>}/><Route path="/search" element={<Search/>}/><Route element={<ProtectedRoute/>}><Route path="/upload" element={<UploadSong/>}/><Route path="/playlists" element={<Playlists/>}/><Route path="/favorites" element={<Favorites/>}/><Route path="/profile" element={<Profile/>}/></Route><Route element={<AdminRoute/>}><Route path="/admin" element={<AdminDashboard/>}/></Route></Route><Route path="*" element={<Navigate to="/" replace/>}/></Routes>}

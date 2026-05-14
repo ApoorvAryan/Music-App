@@ -1,0 +1,3 @@
+import Favorite from '../models/Favorite.js';
+export const getFavorites = async (req,res)=>{try{const f=await Favorite.find({user:req.user._id}).populate('song').sort({createdAt:-1});res.json(f.filter(x=>x.song).map(x=>x.song));}catch(e){res.status(500).json({message:e.message});}};
+export const toggleFavorite = async (req,res)=>{try{const f=await Favorite.findOne({user:req.user._id,song:req.params.songId}); if(f){await f.deleteOne(); return res.json({favorited:false});} await Favorite.create({user:req.user._id,song:req.params.songId}); res.status(201).json({favorited:true});}catch(e){res.status(500).json({message:e.message});}};
