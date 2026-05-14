@@ -1,0 +1,5 @@
+import { Outlet, Link } from 'react-router-dom';
+import { FiLogIn, FiLogOut, FiUser } from 'react-icons/fi';
+import { useAuth } from '../context/AuthContext';
+import Sidebar from './Sidebar'; import Player from './Player';
+export default function Layout(){const{user,logout}=useAuth();return <div className="min-h-screen pb-36 md:pl-64"><Sidebar/><header className="sticky top-0 z-20 flex items-center justify-between border-b border-white/10 bg-ink/75 px-4 py-4 backdrop-blur md:px-8"><Link to="/" className="text-xl font-black md:hidden"><span className="text-fox">Tune</span> Fox</Link><div className="hidden text-sm text-slate-400 md:block">Professional music streaming dashboard</div><div className="flex items-center gap-3">{user?<><Link className="btn btn-ghost px-3" to="/profile"><FiUser/><span className="hidden sm:inline">{user.name}</span></Link><button className="btn btn-ghost px-3" onClick={logout}><FiLogOut/></button></>:<Link className="btn btn-primary" to="/login"><FiLogIn/>Login</Link>}</div></header><main className="mx-auto max-w-7xl px-4 py-6 md:px-8"><Outlet/></main><Player/></div>}
